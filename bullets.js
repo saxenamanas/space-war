@@ -1,13 +1,13 @@
 class Bullets{
     constructor(y){
-        this.x = 0;
+        this.x = 50;
         this.y = y;
         this.w = 10;
         this.h = 5;
     }
 
     show(){
-        rect(this.x,this.y,this.w,this.h);
+        image(bullet,this.x,this.y,this.w,this.h);
     }
 
     move(){

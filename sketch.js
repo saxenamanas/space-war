@@ -1,25 +1,35 @@
 let shipX = 1;
 let shipY = 1;
-let shipW = 50;
-let shipH = 30;
-
+let shipW = 60;
+let shipH = 40;
+let bg;
 var shots = [];
+let bullet;
+let ufo;
+var enemies = [];
 
 function setup() {
-  createCanvas(1000, 600);
+  createCanvas(1066, 600);
   
 }
 
+function preload(){
+  bg = loadImage('space.jpg');
+  ship = loadImage('edited-ship.png');
+  bullet = loadImage('edited-bullet.png');
+  ufo = loadImage('ufo.png');
+}
+
 function keyPressed(){
-  if(keyCode==ENTER){
-    shots.push(new Bullets((shipY+30)/2));
+  if(keyCode==SHIFT){
+    shots.push(new Bullets(((shipY+30)+shipY)/2));
   }
 }
 
 
 function draw() {
-    background(200);
-    rect(shipX,shipY,shipW,shipH);
+    background(bg);
+    image(ship,shipX,shipY,shipW,shipH);
     if(keyIsDown(DOWN_ARROW))
       {
         if(shipY+shipH+5<=600)
@@ -33,6 +43,13 @@ function draw() {
       shots[i].show();
       shots[i].move();
     }
-    print(shots.length);
+    if(random()<=0.08){
+      enemies.push(new Enemy(random(600)));
+    }
+    for(i=0;i<enemies.length;i++){
+      enemies[i].show();
+      enemies[i].move();
+    }
+  print(enemies.length);
 }
   
